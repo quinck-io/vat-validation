@@ -1,0 +1,51 @@
+{
+  "name": "@quinck/vat-validation",
+  "version": "0.0.0",
+  "description": "Allows extra operations on JavaScript collections: Array, Map and Set.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/Quinck/collections.git"
+  },
+  "keywords": [
+    "Collection",
+    "Array",
+    "Set",
+    "Map"
+  ],
+  "author": "Quinck s.r.l.",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Quinck/collections#readme",
+  "devDependencies": {
+    "@tsconfig/node18": "18.2.0",
+    "@types/jstoxml": "2.0.2",
+    "@types/node": "18.8.5",
+    "@typescript-eslint/eslint-plugin": "6.3.0",
+    "@typescript-eslint/parser": "6.3.0",
+    "eslint": "8.25.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "prettier": "3.0.1",
+    "ts-node": "10.9.1",
+    "typescript": "5.1.6"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "axios": "1.4.0",
+    "jstoxml": "3.2.7",
+    "xml2json-light": "1.0.6"
+  }
+}
