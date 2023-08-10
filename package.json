@@ -1,7 +1,7 @@
 {
   "name": "@quinck/vat-validation",
   "version": "0.1.0",
-  "description": "Allows extra operations on JavaScript collections: Array, Map and Set.",
+  "description": "Utility to validate VAT numbers using vies api.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/Quinck/collections.git"
+    "url": "https://bitbucket.org/Quinck/vat-validation.git"
   },
   "keywords": [
     "Collection",
@@ -26,7 +26,7 @@
   ],
   "author": "Quinck s.r.l.",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/Quinck/collections#readme",
+  "homepage": "https://bitbucket.org/Quinck/vat-validation#readme",
   "devDependencies": {
     "@tsconfig/node18": "18.2.0",
     "@types/jstoxml": "2.0.2",
