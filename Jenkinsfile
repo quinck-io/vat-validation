@@ -14,7 +14,7 @@ pipeline {
   }
   
   environment {
-    DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/866587609055887391/kYVKgutodLsnAwLCCIpudEqenPVRsMSDVG84x1rmx-Jr2fc4ttjwVJq6mBp00ciWt-ku'
+    // DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/866587609055887391/kYVKgutodLsnAwLCCIpudEqenPVRsMSDVG84x1rmx-Jr2fc4ttjwVJq6mBp00ciWt-ku'
   }
 
   stages {
@@ -101,7 +101,7 @@ pipeline {
         } catch(Exception e) {
           echo 'No test results available'
         }
-        notifier.notifyDiscord(currentBuild.result, lastRunningStage, testResult)
+        // notifier.notifyDiscord(currentBuild.result, lastRunningStage, testResult)
         deleteDir() /* clean up our workspace */
       }
     }
