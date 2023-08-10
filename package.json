@@ -1,6 +1,6 @@
 {
   "name": "@quinck/vat-validation",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Allows extra operations on JavaScript collections: Array, Map and Set.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
