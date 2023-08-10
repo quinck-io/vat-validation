@@ -73,7 +73,7 @@ pipeline {
               echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
               npm whoami
               
-              PUBLISHED_VERSION=$(npm show @quinck/collections version)
+              PUBLISHED_VERSION=$(npm show @quinck/vat-validation version)
               PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
               if [ "${PUBLISHED_VERSION}" = "${PACKAGE_VERSION}" ]; then
                 echo "The current package version has already been published"
