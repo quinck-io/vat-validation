@@ -13,9 +13,9 @@ pipeline {
     disableConcurrentBuilds()
   }
   
-  environment {
-    // DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/866587609055887391/kYVKgutodLsnAwLCCIpudEqenPVRsMSDVG84x1rmx-Jr2fc4ttjwVJq6mBp00ciWt-ku'
-  }
+  // environment {
+  //   // DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/866587609055887391/kYVKgutodLsnAwLCCIpudEqenPVRsMSDVG84x1rmx-Jr2fc4ttjwVJq6mBp00ciWt-ku'
+  // }
 
   stages {
 
