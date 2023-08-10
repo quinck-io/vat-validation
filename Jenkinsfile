@@ -6,7 +6,7 @@ pipeline {
   agent { label 'master' }
 
   tools {
-    nodejs "nodejs14.19"
+    nodejs "nodejs18.12.1"
   }
 
   options {
@@ -24,7 +24,9 @@ pipeline {
         script {
           lastRunningStage="Project Init"
         }
-        sh 'npm ci'
+        nodejs(nodeJSInstallationName: 'nodejs18.12.1') {
+          sh 'npm ci'
+        }
       }
     }
     
@@ -33,7 +35,9 @@ pipeline {
           script {
             lastRunningStage="Lint"
           }
-          sh 'npm run lint'
+          nodejs(nodeJSInstallationName: 'nodejs18.12.1') {
+            sh 'npm run lint'
+          }
       }
     }
 
@@ -48,7 +52,9 @@ pipeline {
         script {
           lastRunningStage = 'Build'
         }
-        sh 'npm run build'
+        nodejs(nodeJSInstallationName: 'nodejs18.12.1') {
+          sh 'npm run build'
+        }
       }
     }
 
