@@ -5,6 +5,10 @@ import {
     VatValidationResult,
     VatValidationService,
 } from '../vat-validation.models'
+import {
+    ViesCheckVatResponseData,
+    ViesCheckVatResponseDataBody,
+} from './vies-vat-validation.models'
 
 interface ViesCheckVatRequestData extends XmlElement {
     _content: {
@@ -13,21 +17,6 @@ interface ViesCheckVatRequestData extends XmlElement {
             'urn:checkVat': {
                 'urn:countryCode': string
                 'urn:vatNumber': string
-            }
-        }
-    }
-}
-
-interface ViesCheckVatResponseData {
-    'env:Envelope': {
-        'env:Body': {
-            'ns2:checkVatResponse': {
-                'ns2:countryCode': string
-                'ns2:vatNumber': string
-                'ns2:requestDate': string
-                'ns2:valid': boolean
-                'ns2:name': string
-                'ns2:address': string
             }
         }
     }
@@ -82,16 +71,36 @@ export class ViesVatValidationService
     private parseResponse(
         response: ViesCheckVatResponseData,
     ): VatValidationResult {
-        const checkVatResponse =
-            response['env:Envelope']['env:Body']['ns2:checkVatResponse']
+        // console.log(JSON.stringify(response, null, 2))
+
+        const checkVatResponse = response.elements[0].elements.find(
+            x => x.name === 'env:Body',
+        )
+
+        if (!checkVatResponse || checkVatResponse.name !== 'env:Body') {
+            throw new Error('Invalid response')
+        }
+
+        const { elements } = checkVatResponse.elements[0]
 
         return {
-            countryCode: checkVatResponse['ns2:countryCode'],
-            vatNumber: checkVatResponse['ns2:vatNumber'],
-            requestDate: checkVatResponse['ns2:requestDate'],
-            valid: checkVatResponse['ns2:valid'],
-            name: checkVatResponse['ns2:name'],
-            address: checkVatResponse['ns2:address'],
+            countryCode: this.requiredElement(elements, 'ns2:countryCode'),
+            vatNumber: this.requiredElement(elements, 'ns2:vatNumber'),
+            requestDate: this.requiredElement(elements, 'ns2:requestDate'),
+            valid: this.requiredElement(elements, 'ns2:valid') === 'true',
+            name: this.requiredElement(elements, 'ns2:name'),
+            address: this.requiredElement(elements, 'ns2:address'),
         }
+    }
+
+    private requiredElement(
+        elements: ViesCheckVatResponseDataBody['elements'][0]['elements'],
+        name: ViesCheckVatResponseDataBody['elements'][0]['elements'][number]['name'],
+    ): string {
+        const element = elements.find(x => x.name === name)
+
+        if (!element) throw new Error('Invalid response')
+
+        return element.elements[0].text
     }
 }

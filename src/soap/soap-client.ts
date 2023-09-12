@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import { toXML, XmlElement, XmlOptions } from 'jstoxml'
-import { toJson } from 'xml2json'
+import { xml2json } from 'xml-js'
 
 const XML_OPTIONS: XmlOptions = {
     header: false,
@@ -40,5 +40,5 @@ export class SoapClient {
     }
 
     private xml2json = <ResultType>(xml: string): ResultType =>
-        JSON.parse(toJson(xml)) as unknown as ResultType
+        JSON.parse(xml2json(xml)) as unknown as ResultType
 }
